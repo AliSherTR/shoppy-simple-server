@@ -4,7 +4,6 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import * as bcrypt from "bcrypt"
 @Injectable()
 export class UsersService {
-
     constructor(private readonly prismaService : PrismaService){}
     async createUser(body : CreateUserDto) {
         try {
@@ -24,5 +23,13 @@ export class UsersService {
             }
             throw error;
         }  
+    }
+
+    async getUser(email: string) {
+            return await this.prismaService.user.findUniqueOrThrow({
+                where : {
+                    email
+                } 
+            })
     }
 }

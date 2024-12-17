@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import {LoggerModule} from "nestjs-pino";
 import { UsersModule } from './users/users.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [ LoggerModule.forRootAsync({
@@ -21,7 +22,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       } 
     },
     inject: [ConfigService] 
-  }) , ConfigModule.forRoot() , UsersModule],
+  }) , ConfigModule.forRoot() , UsersModule, AuthModule],
   controllers: [],
   providers: [],
 })
